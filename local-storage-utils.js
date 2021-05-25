@@ -2,8 +2,8 @@
 const CURRENT_USER = 'CURRENT_USER';
 
 export function createUser(username, password) {
-    if(localStorage.getItem(username)) {
-        alert('Pick a different username')
+    if (localStorage.getItem(username)) {
+        alert('Pick a different username');
     } else {
         const newUser = {
             username: username,
@@ -43,7 +43,7 @@ export function loginUser(username, password) {
     if (user) {
         if (user.password === password) {
             localStorage.setItem(CURRENT_USER, username);
-            window.location.href = '../todos.html';
+            window.location.href = '../todos';
         } else {
             alert('WRONG! Username and password are WRONG!');
         }
