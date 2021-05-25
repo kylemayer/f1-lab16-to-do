@@ -46,6 +46,10 @@ export function toggleToDo()
 
 export function createToDo()
 
-export function ()
+function findById(arr, id) {
+    for (let item of arr) {
+        if (item.id === id) return item;
+    }
+}
 
 
