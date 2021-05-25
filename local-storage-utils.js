@@ -1,7 +1,6 @@
 
 const CURRENT_USER = 'CURRENT_USER';
 
-
 export function createUser(username, password) {
     if(localStorage.getItem(username)) {
         alert('Pick a different username')
@@ -16,10 +15,24 @@ export function createUser(username, password) {
     }
 }
 
+export function getUser(username) {
+    const stringyUser = localStorage.getItem(username);
 
-export function getUser()
+    return JSON.parse(stringyUser);
+}
 
-export function saveUser
+export function getCurrentUser() {
+    const currentUser = localStorage.getItem(CURRENT_USER);
+
+    const user = getUser(currentUser);
+    
+    return user;
+}
+
+
+export function saveUser() {
+
+}
 
 
 
