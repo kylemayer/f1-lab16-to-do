@@ -30,23 +30,60 @@ export function getCurrentUser() {
 }
 
 
-export function saveUser() {
+export function saveUser(user) {
+    const stringyUser = JSON.stringify(user);
 
+    localStorage.setItem(user.username, stringyUser);
 }
 
 
 
-export function loginUser()
+export function loginUser(username, password) {
+    const user = getUser(username);
+    if (user) {
+        if (user.password === password) {
+            localStorage.setItem(CURRENT_USER, username);
+            window.location.href = '../todos.html';
+        } else {
+            alert('WRONG! Username and password are WRONG!');
+        }
+    } else {
+        alert('WHAT ARE YOU TRYING TO DO?! USER DOES NOT EXIST!');
+    }
+}
 
-export function logOutUser()
+export function logOutUser() {
+    localStorage.removeItem(CURRENT_USER);
+    window.location.href = '../';
+}
+
+export function createToDo(someToDo) {
+    const user = getCurrentUser();
+    const newToDo = {
+        id: Math.ceil(Math.random() * 10000000),
+        message: someToDo,
+        completed: false
+    };
+
+    user.todos.push(newToDo);
+    saveUser(user);
+}
 
 
+export function toggleToDo(todoId) {
+    const user = getCurrentUser();
+    const matchingToDo = findById(user.todos, todoId);
+    if (matchingToDo) {
+        matchingToDo.completed = !matchingToDo.completed;
+        saveUser(user);
+    } else {
+        alert('Nope! No To-Do!');
+    }
 
-export function toggleToDo()
+}
 
-export function createToDo()
 
-function findById(arr, id) {
+export function findById(arr, id) {
     for (let item of arr) {
         if (item.id === id) return item;
     }
