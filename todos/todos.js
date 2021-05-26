@@ -1,4 +1,4 @@
-import { createTodo, getCurrentUser, toggleToDo, logOutUser } from '../local-storage-utils.js';
+import { createToDo, getCurrentUser, toggleToDo, logOutUser } from '../local-storage-utils.js';
 
 const form = document.querySelector('form');
 const ul = document.querySelector('ul');
@@ -21,7 +21,7 @@ form.addEventListener('submit', (e) => {
 
     const formData = new FormData(form);
 
-    createTodo(formData.get('todo'));
+    createToDo(formData.get('todo'));
     renderTodos();
     form.reset();
 });
